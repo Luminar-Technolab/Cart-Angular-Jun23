@@ -1,0 +1,37 @@
+<app-header></app-header>
+<div style="margin-top: 40px;">
+<div *ngIf="allProducts.length===0" style="height: 90vh;" class="empty-wishlist d-flex justify-content-center align-items-center w-100  flex-column">
+    <img src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-5521508-4610092.png" alt="empty">
+    <h1 class="text-danger fw-bolder">Your Wishlist is Empty!!!</h1>
+    <button class="btn btn-success" routerLink="">Add More Items</button>
+</div>
+<div *ngIf="allProducts.length>0" class="wishlist">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h1 class="text-danger fw-bolder">Your Wishlist...</h1>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5" *ngFor="let product of allProducts">
+                <div class="card h-100 shadow">
+                    <!-- Product image-->
+                    <img routerLink="view/{{product.id}}" height="250px" class="card-img-top" [src]="product.image" alt="product" />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{product.title.slice(0,20)}}...</h5>
+                            <!-- Product price-->
+                            ${{product.price}} 
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="d-flex justify-content-between">
+                            <button (click)="removeItem(product._id)" class="btn "><i style="height: 40px;" class="fa-solid fa-heart-circle-minus text-danger fa-2x"></i></button>
+                            <button (click)="addtocart(product)" class="btn "><i style="height: 40px;" class="fa-solid fa-cart-plus text-success fa-2x"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
